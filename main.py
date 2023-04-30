@@ -41,15 +41,15 @@ for y in range(0,500,4):
             # Если не является, то значит точка не заяц
             if res == 0:
                 # Рисуем черную точку - не заяц
-                canvas.create_oval(x-2,y-2,x+2,y+2,outline="black",fill="black", width=2)
+                canvas.create_oval(x-2,y-2,x+2,y+2,outline="white",fill="white", width=2)
                 break
         #Если все нейроны согласились, то рисуем желтую точку - точка зайца
         else:
-            canvas.create_oval(x-2,y-2,x+2,y+2,outline="yellow",fill="yellow",width=2)
+            canvas.create_oval(x-2,y-2,x+2,y+2,outline="black",fill="black",width=2)
         root.update()
 
 for i in range(len(coordsSet)):
-    canvas.create_line(coordsSet[i][0], coordsSet[i][1], coordsSet[i-1][0],coordsSet[i-1][1], width=2, fill="orange")
+    canvas.create_line(coordsSet[i][0], coordsSet[i][1], coordsSet[i-1][0],coordsSet[i-1][1], width=2, fill="yellow")
 
 
 #бесконечный цикл для окна

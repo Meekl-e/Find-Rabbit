@@ -2,13 +2,12 @@ from tkinter import *
 
 
 
-xSet = []
-ySet = []
+coordsSet = []
 
 def saving():
     with open("data/data.txt", "w") as file:
-        for x,y in zip(xSet, ySet):
-            file.write(str(x) + " "+  str(y) + "\n")
+        for coords in coordsSet:
+            file.write(str(coords[0]) + " "+  str(coords[1]) + "\n")
 
 
 def remove():
@@ -16,7 +15,9 @@ def remove():
     f.close()
 
 def load():
+    global coordsSet
     canvas.delete("all")
+    coordsSet = []
     with open("data/data.txt", "r") as file:
         for str in file.readlines():
             str = str.split()
@@ -25,12 +26,12 @@ def load():
 
 def creating_figure(x,y):
     canvas.delete("all")
-    xSet.append(x)
-    ySet.append(y)
-    for i in range(len(xSet)):
-        canvas.create_oval(xSet[i]-1, ySet[i]-1, xSet[i]+1, ySet[i]+1, outline="black",
+    coordsSet.append((x,y))
+
+    for i in range(len(coordsSet)):
+        canvas.create_oval(coordsSet[i][0]-1, coordsSet[i][1]-1, coordsSet[i][0]+1,coordsSet[i][1]+1, outline="black",
                            width=5)
-        canvas.create_line(xSet[i], ySet[i], xSet[i - 1], ySet[i - 1], width=2, fill="black")
+        canvas.create_line(coordsSet[i][0], coordsSet[i][1],coordsSet[i-1][0], coordsSet[i-1][1], width=2, fill="black")
 
 
 def event(event):
@@ -41,6 +42,7 @@ def event(event):
     creating_figure(event.x, event.y)
 
 
+# Визуал программы
 root = Tk()
 root.resizable(width=FALSE, height=FALSE)
 

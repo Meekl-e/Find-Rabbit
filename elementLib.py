@@ -33,7 +33,7 @@ class DecisiveFunction:
     # Выходные данные: 1 - заяц; 0 - не заяц
     def getPos(self, x, y):
         d = x * self.sin + y * self.cos - self.p
-        d*= self.k
+
         if d <=0:
             return 1
         else:
