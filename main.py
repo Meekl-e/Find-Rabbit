@@ -50,6 +50,7 @@ for y in range(0,500,4):
 
 for i in range(len(coordsSet)):
     canvas.create_line(coordsSet[i][0], coordsSet[i][1], coordsSet[i-1][0],coordsSet[i-1][1], width=2, fill="yellow")
+    canvas.create_oval(coordsSet[i][0]-2, coordsSet[i][1]-2, coordsSet[i][0]+2,coordsSet[i][1]+2, width=2, fill="yellow", outline="yellow")
 
 
 #бесконечный цикл для окна
