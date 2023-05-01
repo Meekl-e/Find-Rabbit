@@ -1,6 +1,7 @@
 # Основная часть программы
 import elementLib # импортируем класс нейрона
 from tkinter import * # импортируем библиотеку для работы с окнами
+import creations
 
 # список кортежей координат точек.
 coordsSet = []
@@ -9,6 +10,8 @@ coordsSet = []
 root = Tk()
 canvas = Canvas(root, width=500, height=500, bg="lightgrey")
 canvas.pack()
+
+
 
 # добавляем в общий список точек точки
 with open("data/data.txt","r") as file:
@@ -25,7 +28,9 @@ with open("data/data.txt","r") as file:
 elements = []
 
 # заполняем матрицу нейронами
-for j in range(1, len(coordsSet)+1):
+creations.setAll()
+#for i in range(len(coordsSet)):
+for j in range(1, 361):
     element = elementLib.DecisiveFunction(j, coordsSet)
     elements.append(element)
 
