@@ -1,15 +1,26 @@
 from tkinter import *
 
-def creating_line(p,sin, cos):
+def creating_line(p, sin, cos,color, width=2):
     x1 = 0
     x2 = 500
-    y1 = p/cos
-    print((p - x2 * sin)/cos)
-    y2 =  (p - x2 * sin)/cos
-    canvas.create_line(x1,y1,x2,y2, fill="orange")
-    #canvas.create_oval((x+x2/2)-2,(y+y2/2)-2,(x+x2/2)+2,(y+y2/2)+2,  width=2)
-    #canvas.create_oval(x  - 2, y - 2, x  + 2, y  + 2)
+
+    y1 = p/sin
+    y2 =  (p - x2 * cos)/sin
+
+    # для рисования векторов
+    #x2 = cos * x+200
+    #x1 = 200
+   # y1 = 200
+    #y2 = y*sin+200
+
+
+
+    canvas.create_line(x1,y1,x2,y2, fill=color, width=width)
+
     root.update()
+
+
+
 
 def setAll():
     global root, canvas
