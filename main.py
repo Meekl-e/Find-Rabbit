@@ -96,8 +96,8 @@ root.update()
 # анализируем холст на фигуры
 # Черный - заяц
 # Белый - не заяц
-for y in range(0,500,3):
-    for x in range(0,500,3):
+for y in range(0,500,10):
+    for x in range(0,500,10):
         # обращаемся к каждому нейрону в матрице
         getPos(x,y)
         root.update()

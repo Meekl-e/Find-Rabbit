@@ -44,6 +44,8 @@ class analyzeRabbit():
         centralPointX = (max(map(lambda x: x[0], coords)) + min(map(lambda x: x[0], coords))) // 2
         centralPointY = (max(map(lambda x: x[1], coords)) + min(map(lambda x: x[1], coords))) // 2
         distances = []
+
+
         for x, y in coords:
             distances.append(math.sqrt((x - centralPointX) ** 2 + (y - centralPointY) ** 2))
 
@@ -68,9 +70,10 @@ class analyzeRabbit():
 
     def testFigure(self,coordsSetStart):
         figureMoving = self.creatingFigure(coordsSetStart)
-        if figureMoving == self.coordMoving:
-            return True
-        else:
+        if len(figureMoving)!=len(self.coordMoving):
             return False
+        if sum(figureMoving) - sum(self.coordMoving) == 0:
+            return True
+        return False
 
 

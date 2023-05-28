@@ -8,11 +8,13 @@ def saving():
     with open("data/data.txt", "w") as file:
         for coords in coordsSet:
             file.write(str(coords[0]) + " "+  str(coords[1]) + "\n")
+        file.close()
 
 def savingTest():
-    with open("data/dataTest.txt", "w") as file:
+    with open("data/dataTest.txt", "w") as file2:
         for coords in coordsSet:
-            file.write(str(coords[0]) + " "+  str(coords[1]) + "\n")
+            file2.write(str(coords[0]) + " "+  str(coords[1]) + "\n")
+        file2.close()
 
 
 def remove():
@@ -40,10 +42,6 @@ def creating_figure(x,y):
 
 
 def event(event):
-    #canvas.create_oval(event.x-1,event.y-1,event.x+1,event.y+1, width=2)
-    file = open("data/data.txt", "a")
-    file.write(str(event.x)+" " + str(event.y)+"\n")
-    file.close()
     creating_figure(event.x, event.y)
 
 
