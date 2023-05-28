@@ -1,6 +1,6 @@
 from tkinter import *
 
-def creating_line(p, sin, cos,color, width=2):
+def creating_line(p, sin, cos,color, width=1):
     x1 = 0
     x2 = 500
 

@@ -6,22 +6,12 @@ import creations
 # Функция для рассчета максимального значения для всех пробных точек
 # Вход: sin угла, cos угла, набор пробных точек
 # Максимальное значение из суммы синуса умноженного на xi и косинуса умноженного на yi
-def getMaxFromCoords(sin, cos, coordsSet):
-    res = []
-
-    for coord in coordsSet:
-
-        res.append(coord[0]*cos + coord[1]*sin)
-
-
-
-
-    return max(res)
 
 
 
 # Основной класс нейрона
 class DecisiveFunction:
+
 
 
 
@@ -36,15 +26,11 @@ class DecisiveFunction:
         self.cos = math.cos(self.alpha) # Вычисляем cos alpha
 
 
-        self.p= getMaxFromCoords(self.sin,self.cos,coordsSet) # Получаем максимальное значение из суммы синуса умноженного на xi и косинуса умноженного на yi
+        self.p= max(map(lambda x: x[0]*self.cos+x[1]*self.sin,coordsSet)) # Получаем максимальное значение из суммы синуса умноженного на xi и косинуса умноженного на yi
 
         #creations.creating_line(self.sin, self.cos,res[id][0],res[id][1],color="green", width=4)
         # рисуем отделяющую линию
-        creations.creating_line(self.p,self.sin, self.cos,color="black")
-
-
-
-
+        #creations.creating_line(self.p,self.sin, self.cos,color="black")
 
 
 
@@ -59,16 +45,24 @@ class DecisiveFunction:
         #creations.creating_line(self.sin, self.cos,x,y,color="orange")
 
 
-
-
-
-
         if d <=0:
-            return 1
-        else:
             return 0
+        else:
+            return 1
 
 
 
+
+
+class Neiron:
+
+    def __init__(self, thisVector, centralVector):
+        self.vector = thisVector
+        self.centralVector = centralVector
+
+    def getCount(self):
+        if self.vector > self.centralVector: return 1
+        elif self.vector < self.centralVector: return -1
+        else: return 0
 
 

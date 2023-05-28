@@ -9,6 +9,11 @@ def saving():
         for coords in coordsSet:
             file.write(str(coords[0]) + " "+  str(coords[1]) + "\n")
 
+def savingTest():
+    with open("data/dataTest.txt", "w") as file:
+        for coords in coordsSet:
+            file.write(str(coords[0]) + " "+  str(coords[1]) + "\n")
+
 
 def remove():
     f =  open("data/data.txt", "w")
@@ -45,14 +50,17 @@ def event(event):
 # Визуал программы
 root = Tk()
 root.resizable(width=FALSE, height=FALSE)
+root.config(bg="lightgray")
 
 btns = Frame(root, height=50)
-save = Button(btns, text="Save to file", width=10,  font=("Georgia", 16, "bold"), command=saving)
-delete = Button(btns,  text="Delete file", width=10, font=("Georgia", 16, "bold"), command=remove)
-load = Button(btns, text="Load from file", width=13, font=("Georgia", 16, "bold"), command=load)
+save = Button(btns, text="Save to rabbit ", width=10,  font=("Georgia", 16, "bold"), command=saving)
+saveTest = Button(btns, text="Save to test", width=10,  font=("Georgia", 16, "bold"), command=savingTest)
+delete = Button(btns,  text="Delete file", width=8, font=("Georgia", 16, "bold"), command=remove)
+load = Button(btns, text="Load from file ", width=10, font=("Georgia", 16, "bold"), command=load)
 
 btns.pack(fill=X)
 save.pack(side=LEFT)
+saveTest.pack(side=LEFT)
 load.pack(side=LEFT)
 delete.pack(side=LEFT)
 
@@ -62,5 +70,4 @@ canvas.pack()
 canvas.bind("<Button-1>", event)
 
 root.mainloop()
-
 
