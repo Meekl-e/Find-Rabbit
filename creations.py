@@ -17,7 +17,7 @@ class Creations:
 
     def createPoints(self,coordsSet, testSet):
         self.creatingRabit(coordsSet)
-        self.creatingRabit(testSet)
+        #self.creatingRabit(testSet)
 
         self.root.mainloop()
 
