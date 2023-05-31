@@ -1,40 +1,27 @@
-import elementLib
-import math
 
+import numpy
+import analyzePoints
 class analyzeRabbit():
-    def getPos(self, x, y, elements):
-        for e in elements:
-            # "Спрашиваем" нейрон, является ли по его мнению точка зайцем или нет
-            res = e.getPos(x, y)
-            # Если не является, то значит точка не заяц
-            if res == 0:
-                # Рисуем черную точку - не заяц
-                return False
-            # Если все нейроны согласились, то рисуем желтую точку - точка зайца
-        else:
-            return True
 
-    def creatingFigure(self, coordsSetStart):
-        elements = []
-        for j in range(1, 361):  # 360,180,175,90, 100]:
-            element = elementLib.DecisiveFunction(j, coordsSetStart)
-            elements.append(element)
+
+    def creatingFigure(self, coordsSetStart, analyzeFigure):
+
         coords = []
         for x, y in coordsSetStart:
             summ = 0
-            if self.getPos(x + 1, y, elements) == False:
+            if analyzeFigure.getAllPos(x + 1, y) == False:
                 summ -= 1
             else:
                 summ += 1
-            if self.getPos(x - 1, y, elements) == False:
+            if analyzeFigure.getAllPos(x - 1, y)== False:
                 summ -= 1
             else:
                 summ += 1
-            if self.getPos(x, y - 1, elements) == False:
+            if analyzeFigure.getAllPos(x, y+1) == False:
                 summ -= 1
             else:
                 summ += 1
-            if self.getPos(x, y + 1,elements) == False:
+            if analyzeFigure.getAllPos(x, y-1) == False:
                 summ -= 1
             else:
                 summ += 1
@@ -47,7 +34,7 @@ class analyzeRabbit():
 
 
         for x, y in coords:
-            distances.append(math.sqrt((x - centralPointX) ** 2 + (y - centralPointY) ** 2))
+            distances.append(numpy.sqrt((x - centralPointX) ** 2 + (y - centralPointY) ** 2))
 
         centralVector = 0
         for v in distances:
@@ -64,12 +51,12 @@ class analyzeRabbit():
         return coordMoving
 
 
-    def __init__(self, coordsSetStart):
-        self.coordMoving = self.creatingFigure(coordsSetStart)
+    def __init__(self, coordsSetStart, analyzeFigure):
+        self.coordMoving = self.creatingFigure(coordsSetStart, analyzeFigure)
 
 
     def testFigure(self,coordsSetStart):
-        figureMoving = self.creatingFigure(coordsSetStart)
+        figureMoving = self.creatingFigure(coordsSetStart, analyzePoints.AnalyzePoints(coordsSetStart))
         if len(figureMoving)!=len(self.coordMoving):
             return False
         if sum(figureMoving) - sum(self.coordMoving) == 0:

@@ -1,6 +1,6 @@
 # Класс нейрона
 
-import math # испортируем сложные вычисления
+import numpy # испортируем сложные вычисления
 import creations
 
 # Функция для рассчета максимального значения для всех пробных точек
@@ -19,11 +19,11 @@ class DecisiveFunction:
     # Вход: номер нейрона j, набор пробных точек в формате: [(x1,y1),(x2,y2),...]
     def __init__(self, id, coordsSet):
         self.j = id # Присваиваем j
-        self.alpha = 2* math.pi /  360  * id # Вычисляем угол alpha (каким из углов будет этот нейрон )
+        self.alpha = 2* numpy.pi /  360  * id # Вычисляем угол alpha (каким из углов будет этот нейрон )
 
 
-        self.sin = math.sin(self.alpha) # Вычисляем sin alpha
-        self.cos = math.cos(self.alpha) # Вычисляем cos alpha
+        self.sin = numpy.sin(self.alpha) # Вычисляем sin alpha
+        self.cos = numpy.cos(self.alpha) # Вычисляем cos alpha
 
 
         self.p= max(map(lambda x: x[0]*self.cos+x[1]*self.sin,coordsSet)) # Получаем максимальное значение из суммы синуса умноженного на xi и косинуса умноженного на yi
@@ -52,17 +52,5 @@ class DecisiveFunction:
 
 
 
-
-
-class Neiron:
-
-    def __init__(self, thisVector, centralVector):
-        self.vector = thisVector
-        self.centralVector = centralVector
-
-    def getCount(self):
-        if self.vector > self.centralVector: return 1
-        elif self.vector < self.centralVector: return -1
-        else: return 0
 
 

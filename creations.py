@@ -1,30 +1,30 @@
 from tkinter import *
 
-def creating_line(p, sin, cos,color, width=1):
-    x1 = 0
-    x2 = 500
-
-    y1 = p/sin
-    y2 =  (p - x2 * cos)/sin
-
-    # для рисования векторов
-    #x2 = cos * x+200
-    #x1 = 200
-   # y1 = 200
-    #y2 = y*sin+200
 
 
-
-    canvas.create_line(x1,y1,x2,y2, fill=color, width=width)
-
-    root.update()
+class Creations:
+    def creatingCircle(self,x, y, color):
+        self.canvas.create_oval(x - 2, y - 2, x + 2, y + 2, outline=color, fill=color, width=1)
+        self.root.update()
+    def creatingRabit(self, coordsSet):
+        for i in range(len(coordsSet)):
+            self.canvas.create_line(coordsSet[i][0], coordsSet[i][1], coordsSet[i - 1][0], coordsSet[i - 1][1], width=2,
+                               fill="yellow")
+            self.canvas.create_oval(coordsSet[i][0] - 2, coordsSet[i][1] - 2, coordsSet[i][0] + 2, coordsSet[i][1] + 2,
+                               width=2, fill="yellow", outline="yellow")
 
 
 
+    def createPoints(self,coordsSet, testSet):
+        self.creatingRabit(coordsSet)
+        self.creatingRabit(testSet)
 
-def setAll():
-    global root, canvas
-    root = Tk()
-    canvas = Canvas(root, width=500, height=500, bg="lightgrey")
-    canvas.pack()
+        self.root.mainloop()
+
+    def __init__(self):
+        self.root = Tk()
+        self.canvas = Canvas(self.root, width=500, height=500, bg="lightgrey")
+        self.canvas.pack()
+
+
 
