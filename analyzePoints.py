@@ -27,28 +27,63 @@ class AnalyzePoints:
         return tuple(orderedCoords)
     '''
 
+    def getAnalyzePoint(self, centerPoint, index, orderedCoords):
+
+        point = orderedCoords[index]
+        leftPoint = orderedCoords[index - 1]
+        if index != len(orderedCoords) - 1:
+
+            rightPoint = orderedCoords[index + 1]
+        else:
+            rightPoint = orderedCoords[0]
+
+        centralPoint = ((leftPoint[0] + rightPoint[0]) / 2, (leftPoint[1] + rightPoint[1]) / 2)
+
+        if getDistance(centralPoint, centerPoint) > getDistance(point, centerPoint):
+            return True
+        return False
+
     # анализируем точки, на "невыпкулость"
     def analyzePoint(self, orderedCoords):
 
         centerPoint = (sum(map(lambda x:x[0], orderedCoords))/len(orderedCoords), sum(map(lambda x:x[1], orderedCoords))/len(orderedCoords))
 
         specifPoints = []
+        figures = []
         for index in range(len(orderedCoords)):
-            point = orderedCoords[index]
-            leftPoint = orderedCoords[index-1]
-            if index != len(orderedCoords)-1:
+            if self.getAnalyzePoint(centerPoint, index, orderedCoords):
+                specifPoints.append(orderedCoords[index])
 
-                rightPoint = orderedCoords[index+1]
-            else:
-                rightPoint = orderedCoords[0]
 
-            centralPoint = ((leftPoint[0]+rightPoint[0])/2, (leftPoint[1]+rightPoint[1])/2)
 
-            if getDistance(centralPoint, centerPoint) > getDistance(point, centerPoint):
+        for p in range(len(orderedCoords)):
+            if orderedCoords[p] in sum(figures, []):
+                continue
 
-                specifPoints.append((leftPoint,point,rightPoint))
+            figure = []
+            add = p-1
+            while orderedCoords[add] in specifPoints:
+                figure.append(orderedCoords[add])
+                add-=1
+            figure.append(orderedCoords[add])
+            figure.reverse()
+            add = p
+            while orderedCoords[add] in specifPoints:
+                figure.append(orderedCoords[add])
+                add+=1
+                if add == len(orderedCoords):
+                    add = 0
+            figure.append(orderedCoords[add])
+            if len(figure)!=0:
+                figures.append(figure)
+        print(sum(figures, []))
+
+
+
+
+
         # возвращаем список невыпуклых точек
-        return tuple(specifPoints)
+        return tuple(figures)
 
 
 
