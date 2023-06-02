@@ -11,6 +11,7 @@ import creations as visual
 
 # список кортежей координат точек.
 coordsSet = []
+coordsTest = []
 
 # создаем визуал
 root = visual.Creations()
@@ -28,7 +29,7 @@ with open("data/data.txt","r") as file:
         coordsSet.append((x,y))
 
 # добавляем в общий тестовый список точек точки
-coordsTest = []
+
 with open("data/dataTest.txt","r") as file:
     for str in file.readlines():
         str = str.split()
@@ -41,6 +42,8 @@ with open("data/dataTest.txt","r") as file:
 
 
 
+coordsSet = list(coordsSet)
+coordsTest = list(coordsTest)
 
 analyzeFigure = rc.AnalyzePoints(coordsSet)
 setRabbit = analyzeRabbit.analyzeRabbit(coordsSet, analyzeFigure)

@@ -27,15 +27,23 @@ class AnalyzePoints:
         return tuple(orderedCoords)
     '''
 
-    def getAnalyzePoint(self, centerPoint, index, orderedCoords):
+    def getAnalyzePoint(self, centerPoint, index, orderedCoords,specificPoints):
 
         point = orderedCoords[index]
-        leftPoint = orderedCoords[index - 1]
-        if index != len(orderedCoords) - 1:
+        add = index -1
+        while orderedCoords[add] in specificPoints:
+            add-=1
 
-            rightPoint = orderedCoords[index + 1]
-        else:
-            rightPoint = orderedCoords[0]
+        leftPoint = orderedCoords[add]
+        add = index +1
+        if add == len(orderedCoords):
+            add = 0
+        while orderedCoords[add] in specificPoints:
+
+            add+=1
+            if add == len(orderedCoords):
+                add=0
+        rightPoint = orderedCoords[add]
 
         centralPoint = ((leftPoint[0] + rightPoint[0]) / 2, (leftPoint[1] + rightPoint[1]) / 2)
 
@@ -46,14 +54,18 @@ class AnalyzePoints:
     # анализируем точки, на "невыпкулость"
     def analyzePoint(self, orderedCoords):
 
-        centerPoint = (sum(map(lambda x:x[0], orderedCoords))/len(orderedCoords), sum(map(lambda x:x[1], orderedCoords))/len(orderedCoords))
+        centerPoint = ((max(map(lambda x: x[0], orderedCoords)) + min(map(lambda x: x[0], orderedCoords))) // 2, (max(map(lambda x: x[1], orderedCoords)) + min(map(lambda x: x[1], orderedCoords))) // 2)
 
         specifPoints = []
         figures = []
-        for index in range(len(orderedCoords)):
-            if self.getAnalyzePoint(centerPoint, index, orderedCoords):
-                specifPoints.append(orderedCoords[index])
-
+        correcting = True
+        while correcting:
+            correcting = False
+            for index in range(len(orderedCoords)):
+                res = self.getAnalyzePoint(centerPoint, index, orderedCoords,specifPoints)
+                if res and orderedCoords[index] not in specifPoints:
+                    correcting = True
+                    specifPoints.append(orderedCoords[index])
 
 
         for p in range(len(orderedCoords)):
@@ -74,9 +86,8 @@ class AnalyzePoints:
                 if add == len(orderedCoords):
                     add = 0
             figure.append(orderedCoords[add])
-            if len(figure)!=0:
+            if len(figure)>2:
                 figures.append(figure)
-        print(sum(figures, []))
 
 
 
@@ -100,6 +111,7 @@ class AnalyzePoints:
             element = elementLib.DecisiveFunction(j, coordsSet)
             self.mainElements.append(element)
         for figure in figures:
+
             elementFigure = []
             for j in range(1, 361):  # 360,180,175,90, 100]:
                 element = elementLib.DecisiveFunction(j, figure)
@@ -112,6 +124,7 @@ class AnalyzePoints:
     def getFiguresPos(self,x,y):
 
         for figure in self.elements:
+
             summ = 0
             for e in figure:
                 res = e.getPos(x, y)
