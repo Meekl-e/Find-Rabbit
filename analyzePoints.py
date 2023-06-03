@@ -1,13 +1,14 @@
 import numpy
-import elementLib
 
+import alphashape
 
-def getDistance(coords1,coords2):
-    return round(numpy.sqrt((coords2[0] -coords1[0]) ** 2 + (coords2[1] - coords1[1]) ** 2), 3)
+#def getDistance(coords1,coords2):
+ #   return round(numpy.sqrt((coords2[0] -coords1[0]) ** 2 + (coords2[1] - coords1[1]) ** 2), 3)
 
-
+# Все помещено в класс для удобства
 class AnalyzePoints:
     '''
+    Установление порядка координат. В дальнейшем отказался
     def setOrder(self,coordsSet):
         point = coordsSet.pop(coordsSet.index(min(coordsSet)))
         orderedCoords = []
@@ -25,7 +26,8 @@ class AnalyzePoints:
                     orderedCoords.append(point)
                     break
         return tuple(orderedCoords)
-    '''
+
+
 
     def getAnalyzePoint(self, centerPoint, index, orderedCoords,specificPoints):
 
@@ -51,9 +53,11 @@ class AnalyzePoints:
             return True
         return False
 
+'''
     # анализируем точки, на "невыпкулость"
     def analyzePoint(self, orderedCoords):
-
+        '''
+        Мой способ поиска невыпуклых точек
         centerPoint = ((max(map(lambda x: x[0], orderedCoords)) + min(map(lambda x: x[0], orderedCoords))) // 2, (max(map(lambda x: x[1], orderedCoords)) + min(map(lambda x: x[1], orderedCoords))) // 2)
 
         specifPoints = []
@@ -66,6 +70,22 @@ class AnalyzePoints:
                 if res and orderedCoords[index] not in specifPoints:
                     correcting = True
                     specifPoints.append(orderedCoords[index])
+        '''
+        specifPoints = []
+        figures = []
+
+
+        alpha_shape = alphashape.alphashape(orderedCoords, 0)
+        # получаем координаты вершин альфа-формы
+        vertices = list(alpha_shape.exterior.coords)
+        # для каждой точки в фигуре
+        for point in orderedCoords:
+            # если точка не принадлежит вершинам альфа-формы
+            if point not in vertices:
+                # добавляем ее в список невыпуклых точек
+
+                specifPoints.append(point)
+
 
 
         for p in range(len(orderedCoords)):
@@ -94,7 +114,7 @@ class AnalyzePoints:
 
 
         # возвращаем список невыпуклых точек
-        return tuple(figures)
+        return figures
 
 
 
@@ -102,49 +122,14 @@ class AnalyzePoints:
 
 
 
-    def __init__(self, coordsSet):
-
-        figures =  self.analyzePoint(coordsSet)
-        self.elements = []
-        self.mainElements = []
-        for j in range(1, 361):  # 360,180,175,90, 100]:
-            element = elementLib.DecisiveFunction(j, coordsSet)
-            self.mainElements.append(element)
-        for figure in figures:
-
-            elementFigure = []
-            for j in range(1, 361):  # 360,180,175,90, 100]:
-                element = elementLib.DecisiveFunction(j, figure)
-                elementFigure.append(element)
-
-            self.elements.append(elementFigure)
 
 
 
-    def getFiguresPos(self,x,y):
-
-        for figure in self.elements:
-
-            summ = 0
-            for e in figure:
-                res = e.getPos(x, y)
-                summ += res
-            if summ == 0:
-                return True
 
 
-        return False
 
-    def getAllPos(self,x,y):
-        for e in self.mainElements:
-            res = e.getPos(x,y)
-            if res ==1:
-                return False
-        if self.getFiguresPos(x,y):
-            return False
-        return True
 
-        #print(orderedCoords,[specPoints])
+
 
 
 

@@ -4,7 +4,7 @@ import math
 import elementLib # импортируем класс нейрона
 
 import analyzeRabbit
-import analyzePoints as rc
+import figuresCheck
 import creations as visual
 
 
@@ -45,7 +45,7 @@ with open("data/dataTest.txt","r") as file:
 coordsSet = list(coordsSet)
 coordsTest = list(coordsTest)
 
-analyzeFigure = rc.AnalyzePoints(coordsSet)
+analyzeFigure = figuresCheck.checkPoints(coordsSet)
 setRabbit = analyzeRabbit.analyzeRabbit(coordsSet, analyzeFigure)
 
 # анализируем холст на фигуры
@@ -53,11 +53,18 @@ setRabbit = analyzeRabbit.analyzeRabbit(coordsSet, analyzeFigure)
 # Белый - не заяц
 for y in range(0,500,5):
     for x in range(0,500,5):
-        # обращаемся к каждому нейрону в матрице
-        if analyzeFigure.getAllPos(x,y):
-            root.creatingCircle(x,y,"black")
+        if analyzeFigure.getAllPos(x, y):
+            root.creatingCircle(x, y, "black")
         else:
-            root.creatingCircle(x,y,"white")
+            root.creatingCircle(x, y, "white")
+
+# Проверка для какой-то точки
+#x = 120
+#y = 140
+#if analyzeFigure.getAllPos(x,y):
+ #   root.creatingCircle(x,y,"black")
+#else:
+ #   root.creatingCircle(x,y,"white")
 
 print(setRabbit.testFigure(coordsTest))
 root.createPoints(coordsSet, coordsTest)

@@ -1,6 +1,6 @@
 
 import numpy
-import analyzePoints
+import figuresCheck
 class analyzeRabbit():
 
 
@@ -56,7 +56,7 @@ class analyzeRabbit():
 
 
     def testFigure(self,coordsSetStart):
-        figureMoving = self.creatingFigure(coordsSetStart, analyzePoints.AnalyzePoints(coordsSetStart))
+        figureMoving = self.creatingFigure(coordsSetStart, figuresCheck.checkPoints(coordsSetStart))
         if len(figureMoving)!=len(self.coordMoving):
             return False
         if sum(figureMoving) - sum(self.coordMoving) == 0:
