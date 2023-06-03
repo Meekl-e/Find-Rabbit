@@ -1,6 +1,5 @@
-import numpy
+import elementLib
 
-import alphashape
 
 #def getDistance(coords1,coords2):
  #   return round(numpy.sqrt((coords2[0] -coords1[0]) ** 2 + (coords2[1] - coords1[1]) ** 2), 3)
@@ -54,6 +53,31 @@ class AnalyzePoints:
         return False
 
 '''
+    def getPos(self,x,y):
+        for e in self.elements:
+            if e.getPos(x, y) > 0:
+                return False
+        return True
+    def checkCoord(self,x,y):
+        summ = 0
+        if self.getPos(x + 1, y) == False:
+            summ -= 1
+        else:
+            summ += 1
+        if self.getPos(x - 1, y)== False:
+            summ -= 1
+        else:
+            summ += 1
+        if self.getPos(x, y+1) == False:
+            summ -= 1
+        else:
+            summ += 1
+        if self.getPos(x, y-1) == False:
+            summ -= 1
+        else:
+            summ += 1
+        if summ > 0:
+            return True
     # анализируем точки, на "невыпкулость"
     def analyzePoint(self, orderedCoords):
         '''
@@ -73,18 +97,13 @@ class AnalyzePoints:
         '''
         specifPoints = []
         figures = []
-
-
-        alpha_shape = alphashape.alphashape(orderedCoords, 0)
-        # получаем координаты вершин альфа-формы
-        vertices = list(alpha_shape.exterior.coords)
-        # для каждой точки в фигуре
-        for point in orderedCoords:
-            # если точка не принадлежит вершинам альфа-формы
-            if point not in vertices:
-                # добавляем ее в список невыпуклых точек
-
-                specifPoints.append(point)
+        self.elements = []
+        for i in range(1,361):
+            e = elementLib.DecisiveFunction(i, orderedCoords)
+            self.elements.append(e)
+        for x,y in orderedCoords:
+            if self.checkCoord(x,y):
+                specifPoints.append((x,y))
 
 
 
@@ -108,6 +127,7 @@ class AnalyzePoints:
             figure.append(orderedCoords[add])
             if len(figure)>2:
                 figures.append(figure)
+
 
 
 

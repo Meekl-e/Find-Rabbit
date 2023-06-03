@@ -11,7 +11,9 @@ class checkPoints:
         self.elements = []
         self.mainElements = []
         self.antiElements = []
+        self.superAntiElements = []
         self.neirons = []
+        self.superAntiNeirons = []
         # Первый слой, строим общую невыпуклость
         self.antiNeirons = ap.analyzePoint(coordsSet)
         # Второй слой нейронов, которые при выделнии говорят, где в невыпуклых антинейронах есть заяц
@@ -20,6 +22,18 @@ class checkPoints:
             figures = ap.analyzePoint(figure)
             for e in figures:
                 self.neirons.append(e)
+
+
+        for figure in self.neirons:
+
+            figures = ap.analyzePoint(figure)
+            for e in figures:
+                self.superAntiNeirons.append(e)
+
+        print(self.neirons)
+
+
+
         # Создание матрицы
 
         for i in range(1,361):
@@ -40,6 +54,13 @@ class checkPoints:
                 elementFigure.append(e)
             self.antiElements.append(elementFigure)
 
+        for n in self.superAntiNeirons:
+            elementFigure = []
+            for i in range(1, 361):
+                e = elementLib.DecisiveFunction(id=i,coordsSet=n)
+                elementFigure.append(e)
+            self.superAntiElements.append(elementFigure)
+
 
 
 
@@ -59,8 +80,20 @@ class checkPoints:
             if summ == 0:
                 return False
 
+    def getSuperAntiFiguresPos(self,x,y):
+
+        for figure in self.superAntiElements:
+
+            summ = 0
+            for e in figure:
+                res = e.getPos(x, y)
+                summ += res
+            if summ == 0:
+                return False
+
 
         return True
+
     def getFigurePos(self,x,y):
 
         for figure in self.elements:
@@ -80,10 +113,15 @@ class checkPoints:
                 return False
         antiRes =  self.getAntiFiguresPos(x,y)
         res =  self.getFigurePos(x,y)
+        superAntiRes = self.getSuperAntiFiguresPos(x,y)
        # print(antiRes,"antiRes")
         #print(res,"res")
-        if antiRes == False and res == False:
-            return False
-        elif antiRes == False and res == True:
-            return True
+        if antiRes == False:
+            if res == False:
+                return False
+            elif superAntiRes==True:
+                return True
+            else:
+                return False
+
         return True
