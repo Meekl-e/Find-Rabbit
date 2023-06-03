@@ -68,7 +68,7 @@ for y in range(0,500,5):
 
 print(setRabbit.testFigure(coordsTest))
 root.createPoints(coordsSet, coordsTest)
-# исуем зайца
+
 
 
 #Проверяем на "медведя"
