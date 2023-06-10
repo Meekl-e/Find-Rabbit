@@ -30,7 +30,7 @@ class checkPoints:
             for e in figures:
                 self.superAntiNeirons.append(e)
 
-        print(self.neirons)
+
 
 
 
