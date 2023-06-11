@@ -1,5 +1,6 @@
 import elementLib
-import analyzePoints
+from .. import analyzePoints
+
 
 # класс проверки фигуры
 
@@ -37,27 +38,27 @@ class checkPoints:
         # Создание матрицы
 
         for i in range(1,361):
-            e = elementLib.DecisiveFunction(id=i,coordsSet=coordsSet)
+            e = elementLib.DecisiveFunction(id=i, coordsSet=coordsSet)
             self.mainElements.append(e)
 
         for n in self.neirons:
             elementFigure = []
             for i in range(1, 361):
-                e1 = elementLib.DecisiveFunction(id=i,coordsSet=n)
+                e1 = elementLib.DecisiveFunction(id=i, coordsSet=n)
                 elementFigure.append(e1)
             self.elements.append(elementFigure)
 
         for n in self.antiNeirons:
             elementFigure = []
             for i in range(1, 361):
-                e = elementLib.DecisiveFunction(id=i,coordsSet=n)
+                e = elementLib.DecisiveFunction(id=i, coordsSet=n)
                 elementFigure.append(e)
             self.antiElements.append(elementFigure)
 
         for n in self.superAntiNeirons:
             elementFigure = []
             for i in range(1, 361):
-                e = elementLib.DecisiveFunction(id=i,coordsSet=n)
+                e = elementLib.DecisiveFunction(id=i, coordsSet=n)
                 elementFigure.append(e)
             self.superAntiElements.append(elementFigure)
 

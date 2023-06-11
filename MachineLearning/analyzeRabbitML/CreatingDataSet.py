@@ -136,7 +136,7 @@ class GeneratingRabbits:
         noRabbits.clear()
         file.close()
 
-        fileTest = open("datasets/dataTestNoRabbit.txt","w")
+        fileTest = open("datasets/dataTestNoRabbit.txt", "w")
         fileTest.writelines(testNoRabbits)
         fileTest.close()
 

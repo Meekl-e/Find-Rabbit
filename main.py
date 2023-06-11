@@ -1,13 +1,8 @@
 # Основная часть программы
-import math
 
-import elementLib # импортируем класс нейрона
-
-import analyzeRabbit
-import figuresCheck
-import creations as visual
-
-
+from RabbitAnalyze import analyzeRabbit
+from RabbitAnalyze.classes import figuresCheck
+from Utilites import creations as visual
 
 # список кортежей координат точек.
 coordsSet = []
