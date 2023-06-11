@@ -3,4 +3,7 @@
 /data/data3.txt
 /data/data4.txt
 /.idea/
-/MachineLearning/analyzeRabbitML/datasets/
+/MachineLearning/analyzeRabbitML/datasets/dataNoRabbits.txt
+/MachineLearning/analyzeRabbitML/datasets/dataRabbits.txt
+/MachineLearning/analyzeRabbitML/datasets/dataTestNoRabbit.txt
+/MachineLearning/analyzeRabbitML/datasets/dataTestRabbits.txt

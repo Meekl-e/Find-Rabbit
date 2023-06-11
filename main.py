@@ -1,7 +1,6 @@
 # Основная часть программы
 
-from RabbitAnalyze import analyzeRabbit
-from RabbitAnalyze.classes import figuresCheck
+from RabbitAnalyze import analyzeRabbit, figuresCheck
 from Utilites import creations as visual
 
 # список кортежей координат точек.

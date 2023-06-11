@@ -1,6 +1,6 @@
 
 import numpy
-from classes import figuresCheck
+from RabbitAnalyze import figuresCheck
 
 
 class analyzeRabbit():

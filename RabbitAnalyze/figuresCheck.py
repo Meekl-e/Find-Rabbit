@@ -1,5 +1,5 @@
-import elementLib
-from .. import analyzePoints
+from classes import elementLib
+from classes import analyzePoints
 
 
 # класс проверки фигуры

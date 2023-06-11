@@ -1,4 +1,4 @@
-from classes import elementLib
+import elementLib
 
 
 #def getDistance(coords1,coords2):

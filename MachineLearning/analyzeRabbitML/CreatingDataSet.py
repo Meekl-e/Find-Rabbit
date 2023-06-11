@@ -143,6 +143,6 @@ class GeneratingRabbits:
 
 
 
-gen = GeneratingRabbits(10000)
+gen = GeneratingRabbits(100)
 gen.generatingRabbits()
-#gen.generatingNoRabbits()
+gen.generatingNoRabbits()
