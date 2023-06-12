@@ -143,6 +143,3 @@ class GeneratingRabbits:
 
 
 
-gen = GeneratingRabbits(100)
-gen.generatingRabbits()
-gen.generatingNoRabbits()
