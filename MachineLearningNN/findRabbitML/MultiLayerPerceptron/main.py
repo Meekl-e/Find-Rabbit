@@ -21,7 +21,7 @@ dataX, dataY, dataTestX, dataTestY = CreatingDataSet.getData()
 
 
 # Создаем нейросеть
-model = NeuralNetwork(2,10,[4,2])
+model = NeuralNetwork(2,1000,[4,2])
 print("Start Learning")
 model.fit(dataX,dataY)
 
