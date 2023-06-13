@@ -61,15 +61,16 @@ def creatingRandomFigure(startX,startY, maximum):
 
 def generatingFigure(figure, amount):
     string = ""
+
     for x in range(amount):
         for y in range(amount):
-
             if figure(x, y):
 
                 string += "1 "
             else:
 
                 string += "0 "
+
     return string
 
 class GeneratingRabbits:
@@ -78,6 +79,8 @@ class GeneratingRabbits:
         self.amount = int(np.sqrt(amount))
         self.count = amount
         self.test = amount//self.amount
+        self.generatingRabbits()
+        self.generatingNoRabbits()
 
     def generatingRabbits(self):
         rabbits = []
@@ -85,8 +88,11 @@ class GeneratingRabbits:
             for y in range(self.amount):
                 figure = creatingRabbit(x,y, self.amount)
                 if figure == None:
-                    continue
-                string = generatingFigure(figure, self.amount)
+                    string =  "0 "* (self.amount*self.amount)
+                else:
+                    string = generatingFigure(figure, self.amount)
+
+
 
                 rabbits.append(string)
             print(len(rabbits))
@@ -112,12 +118,13 @@ class GeneratingRabbits:
 
 
     def generatingNoRabbits(self):
-
         noRabbits = []
         for x in range(self.amount):
             for y in range(self.amount):
                 figure = creatingRandomFigure(x,y,self.amount)
+
                 string = generatingFigure(figure, self.amount)
+
 
                 noRabbits.append(string)
             print(len(noRabbits))

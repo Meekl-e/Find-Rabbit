@@ -21,10 +21,11 @@ class Creations:
 
         self.root.mainloop()
 
-    def __init__(self):
+    def __init__(self, size):
         self.root = Tk()
-        self.canvas = Canvas(self.root, width=500, height=500, bg="lightgrey")
+        self.canvas = Canvas(self.root, width=size, height=size, bg="lightgrey")
         self.canvas.pack()
+
 
 
 

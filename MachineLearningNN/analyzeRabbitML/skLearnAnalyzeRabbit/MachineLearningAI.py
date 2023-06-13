@@ -1,7 +1,7 @@
 # 100 - 87
 # 20 - 86
 # 500 - 87
-
+import numpy as np
 from sklearn.neural_network import MLPClassifier
 import random
 
@@ -45,15 +45,24 @@ class neuralNetwork:
             testY.append(test[1])
         return (X,y),(testX,testY)
 
+    def getPredict(self, element):
+        e = []
+        for i in element.split():
+            e = np.append(e, int(i))
+        if self.model.predict([e]) == 1:
+            return True
+        else:
+            return False
+
     def __init__(self):
         data = self.analyzeDataSet()
         X,y = data[0]
         testX, testY = data[1]
-        model = MLPClassifier(random_state=1, max_iter=100)
+        self.model = MLPClassifier(random_state=1, max_iter=1000)
         print("Start Learning")
-        model.fit(X, y)
+        self.model.fit(X, y)
 
-        predictions = model.predict(testX)
+        predictions = self.model.predict(testX)
 
 
         wrong = 0
@@ -62,6 +71,5 @@ class neuralNetwork:
                 wrong += 1
         print("SCORE:", round(1 - wrong / len(predictions), 3))
 
-        print(model.score(testX, testY))
+        print(self.model.score(testX, testY))
 
-n = neuralNetwork()

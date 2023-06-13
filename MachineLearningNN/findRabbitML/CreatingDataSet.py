@@ -36,14 +36,9 @@ def getData():
         testX.append(test[0])
         testY.append(test[1])
 
+
     return np.array(X),np.array(y),np.array(testX),np.array(testY)
 
-def rabbitFunc(x,y):
-    r = 100
-
-    distance = np.sqrt((x - 100) ** 2 + (y - 100) ** 2)
-
-    return distance <= r
 
 def saveToFile(name, data):
     file = open("datasets/data"+name+".txt", "w")
@@ -60,21 +55,20 @@ class GeneratingPoints:
     def generating(self):
         dataRabbits = []
         dataNoRabbits = []
-        while len(dataRabbits) <= self.amount:
-            for i in range(self.amount):
-                x = random.randint(0, self.lenSize)
-                y = random.randint(0, self.lenSize)
-                while (x, y) in dataRabbits or (x, y) in dataNoRabbits:
-                    x = random.randint(0, self.lenSize)
-                    y = random.randint(0, self.lenSize)
-                if rabbitFunc(x, y):
+
+
+        for x in range(self.amount):
+            for y in range(self.amount):
+                if self.rabbitFunc(x, y):
                     dataRabbits.append((x, y))
                 else:
                     dataNoRabbits.append((x, y))
-            while len(dataNoRabbits) > len(dataRabbits):
-                dataNoRabbits.pop(0)
-            while len(dataRabbits) > len(dataNoRabbits):
-                dataRabbits.pop(0)
+        while len(dataNoRabbits) > len(dataRabbits):
+            dataNoRabbits.pop(random.randint(0,len(dataNoRabbits)-1))
+
+
+
+
 
         self.creatingfile(dataRabbits, "Rabbits")
         self.creatingfile(dataNoRabbits, "NoRabbits")
@@ -94,12 +88,10 @@ class GeneratingPoints:
 
 
 
-    def __init__(self, amount=-1, lenSize = 100):
+    def __init__(self, rabbitFunc,lenSize = 100,):
 
-        if amount == -1:
-            amount = lenSize**2
-        self.amount = amount
-        self.lenSize = lenSize
+        self.rabbitFunc = rabbitFunc
+        self.amount = lenSize
         self.generating()
 
 

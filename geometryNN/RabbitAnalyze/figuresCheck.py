@@ -1,5 +1,4 @@
-from classes import elementLib
-from classes import analyzePoints
+from RabbitAnalyze.classes import elementLib, analyzePoints
 
 
 # класс проверки фигуры
