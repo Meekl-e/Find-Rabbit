@@ -1,7 +1,6 @@
 from tkinter import *
 
 
-
 coordsSet = []
 
 def saving():
@@ -68,4 +67,6 @@ canvas.pack()
 canvas.bind("<Button-1>", event)
 
 root.mainloop()
+
+
 
