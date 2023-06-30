@@ -1,5 +1,5 @@
-from MachineLearningNN.analyzeRabbitML.CreatingDataSet import GeneratingRabbits
-from MachineLearningNN.analyzeRabbitML.skLearnAnalyzeRabbit import MachineLearningAI
+from CreatingDataSet import GeneratingRabbits
+import MachineLearningAI
 
 gen = GeneratingRabbits(500)
 

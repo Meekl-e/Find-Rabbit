@@ -1,5 +1,5 @@
-from MachineLearningNN.analyzeRabbitML import CreatingDataSet
-from MachineLearningNN.analyzeRabbitML.MultiLayerPerceptron.neuralNetwork import NeuralNetwork
+import CreatingDataSet
+from neuralNetwork import NeuralNetwork
 import random
 import numpy as np
 
@@ -10,19 +10,19 @@ gen = CreatingDataSet.GeneratingRabbits(500)
 
 
 data, dataTest = [],[]
-with open("datasets/dataRabbits.txt", "r") as file:
+with open("MachineLearningNN/analyzeRabbitML/MultiLayerPerceptron/datasets/dataRabbits.txt", "r") as file:
     for l in file.readlines():
         data.append((list(map(lambda x: float(x), l.split())), 1))
 print("Rabbit data complete")
-with open("datasets/dataNoRabbits.txt", "r") as file:
+with open("MachineLearningNN/analyzeRabbitML/MultiLayerPerceptron/datasets/dataNoRabbits.txt", "r") as file:
     for l in file.readlines():
         data.append((list(map(lambda x: float(x), l.split())), 0))
 print("No rabbit data complete")
-with open("datasets/dataTestNoRabbit.txt", "r") as file:
+with open("MachineLearningNN/analyzeRabbitML/MultiLayerPerceptron/datasets/dataTestNoRabbit.txt", "r") as file:
     for l in file.readlines():
         dataTest.append((list(map(lambda x: float(x), l.split())), 0))
 print("Test rabbit complete")
-with open("datasets/dataTestRabbits.txt", "r") as file:
+with open("MachineLearningNN/analyzeRabbitML/MultiLayerPerceptron/datasets/dataTestRabbits.txt", "r") as file:
     for l in file.readlines():
         dataTest.append((list(map(lambda x: float(x), l.split())), 1))
 print("Test no rabbit complete")

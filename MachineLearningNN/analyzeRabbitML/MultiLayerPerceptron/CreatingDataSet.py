@@ -104,14 +104,14 @@ class GeneratingRabbits:
         for i in range(self.test):
             testRabbits.append(rabbits.pop(0))
 
-        file = open("datasets/dataRabbits.txt", "w")
+        file = open("MachineLearningNN/analyzeRabbitML/MultiLayerPerceptron/datasets/dataRabbits.txt", "w")
         file.writelines(rabbits)
 
 
         rabbits.clear()
         file.close()
 
-        fileTest = open("datasets/dataTestRabbits.txt", "w")
+        fileTest = open("MachineLearningNN/analyzeRabbitML/MultiLayerPerceptron/datasets/dataTestRabbits.txt", "w")
         fileTest.writelines(testRabbits)
         fileTest.close()
 
@@ -137,13 +137,13 @@ class GeneratingRabbits:
             testNoRabbits.append(noRabbits.pop(0))
 
 
-        file = open("datasets/dataNoRabbits.txt", "w")
+        file = open("MachineLearningNN/analyzeRabbitML/MultiLayerPerceptron/datasets/dataNoRabbits.txt", "w")
         file.writelines(noRabbits)
 
         noRabbits.clear()
         file.close()
 
-        fileTest = open("datasets/dataTestNoRabbit.txt", "w")
+        fileTest = open("MachineLearningNN/analyzeRabbitML/MultiLayerPerceptron/datasets/dataTestNoRabbit.txt", "w")
         fileTest.writelines(testNoRabbits)
         fileTest.close()
 

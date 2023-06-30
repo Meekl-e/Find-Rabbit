@@ -1,5 +1,5 @@
 from sklearn.neural_network import MLPClassifier
-from MachineLearningNN.findRabbitML import CreatingDataSet as CreatingFindData
+import CreatingDataSet as CreatingFindData
 import creations
 
 def rabbitFunc(x,y):

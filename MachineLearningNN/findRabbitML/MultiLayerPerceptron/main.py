@@ -1,5 +1,5 @@
-from MachineLearningNN.findRabbitML import CreatingDataSet
-from MachineLearningNN.findRabbitML.MultiLayerPerceptron.neuralNetwork import NeuralNetwork
+import CreatingDataSet
+from neuralNetwork import NeuralNetwork
 import creations
 
 SIZE = 50

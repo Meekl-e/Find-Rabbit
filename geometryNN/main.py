@@ -4,18 +4,18 @@ from RabbitAnalyze import figuresCheck, analyzeRabbit
 import creations as visual
 
 #Установить размер холста
-size = 50
+size = 500
 
 def loadData():
     coordsTest, coordsSet = [],[]
-    with open("data/data.txt", "r") as file:
+    with open("geometryNN/data/data.txt", "r") as file:
         for str in file.readlines():
             str = str.split()
             x = int(str[0])
             y = int(str[1])
 
             coordsSet.append((x, y))
-    with open("data/dataTest.txt", "r") as file:
+    with open("geometryNN/data/dataTest.txt", "r") as file:
         for str in file.readlines():
             str = str.split()
             x = int(str[0])

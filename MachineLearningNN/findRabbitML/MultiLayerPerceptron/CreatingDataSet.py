@@ -5,19 +5,19 @@ import numpy as np
 def getData():
     data = []
     dataTest = []
-    with open("datasets/dataRabbits.txt", "r") as file:
+    with open("MachineLearningNN/findRabbitML/MultiLayerPerceptron/datasets/dataRabbits.txt", "r") as file:
         for l in file.readlines():
             data.append((list(map(lambda x: float(x), l.split())), 1))
 
-    with open("datasets/dataNoRabbits.txt", "r") as file:
+    with open("MachineLearningNN/findRabbitML/MultiLayerPerceptron/datasets/dataNoRabbits.txt", "r") as file:
         for l in file.readlines():
             data.append((list(map(lambda x: float(x), l.split())), 0))
 
-    with open("datasets/dataTestNoRabbits.txt", "r") as file:
+    with open("MachineLearningNN/findRabbitML/MultiLayerPerceptron/datasets/dataTestNoRabbits.txt", "r") as file:
         for l in file.readlines():
             dataTest.append((list(map(lambda x: float(x), l.split())), 0))
 
-    with open("datasets/dataTestRabbits.txt", "r") as file:
+    with open("MachineLearningNN/findRabbitML/MultiLayerPerceptron/datasets/dataTestRabbits.txt", "r") as file:
         for l in file.readlines():
             dataTest.append((list(map(lambda x: float(x), l.split())), 1))
     random.shuffle(data)
@@ -41,7 +41,7 @@ def getData():
 
 
 def saveToFile(name, data):
-    file = open("datasets/data"+name+".txt", "w")
+    file = open("MachineLearningNN/findRabbitML/MultiLayerPerceptron/datasets/data"+name+".txt", "w")
     for line in data:
         for s in line:
             file.write(str(s)+" ")
