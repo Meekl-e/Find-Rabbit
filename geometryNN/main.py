@@ -25,8 +25,8 @@ def loadData():
 
 
 def checkAllCoords(lenSize):
-    for y in range(0, lenSize,1):
-        for x in range(0, lenSize, 1):
+    for y in range(0, lenSize,3):
+        for x in range(0, lenSize, 3):
             if analyzeFigure.getAllPos(x,y):
                 root.creatingCircle(x,y,"black")
             else:
