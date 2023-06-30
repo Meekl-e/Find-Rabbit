@@ -11,7 +11,8 @@
 ## Запуск проекта
 ### 1. Запустите файл _main.py_
 #### Желательно после первого запуска закомментировать строчку _gen = CreatingDataSet.GeneratingRabbits(500)_, чтобы выборка не создавалась каждый раз заново
-
+#### Если вы используете виртуальное окружение:
+#### Установите _working directory_ значение _...Find-Rabbit_ (с _...Find-Rabbit/MachineLearningNN/analyzeRabbitML/MultiLayerPerceptron/_)
 
 ## Результаты запуска
 ### 1. Будет сгенерировано 4 файла: 
